@@ -1,0 +1,11 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Усі файли (новини, документи, фотогалерея, розділи) доступні для читання
+    // всім відвідувачам сайту, але завантажувати/видаляти може лише адміністратор.
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

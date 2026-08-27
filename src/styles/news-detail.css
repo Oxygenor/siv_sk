@@ -1,0 +1,6 @@
+.news-detail { max-width: 760px; }
+.news-detail-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin: 16px 0;
+}

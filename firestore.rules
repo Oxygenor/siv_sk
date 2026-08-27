@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Публічно читають усі — новини, документи, фото, розділи.
+    match /news/{id} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /documents/{id} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /gallery/{id} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /sections/{id} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Повідомлення з контактної форми: будь-хто може створити,
+    // читати/редагувати/видаляти може лише авторизований адміністратор.
+    match /messages/{id} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}

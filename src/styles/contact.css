@@ -1,0 +1,21 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-info, .contact-form { padding: 28px; }
+.contact-map {
+  margin-top: 18px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 220px;
+  border: 1px solid var(--color-border);
+}
+.contact-map iframe { width: 100%; height: 100%; border: 0; }
+
+.contact-status { margin-top: 14px; font-weight: 600; }
+.contact-status-ok { color: var(--color-success); }
+.contact-status-error { color: var(--color-danger); }

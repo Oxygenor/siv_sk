@@ -1,0 +1,9 @@
+.breadcrumbs {
+  padding: 14px 20px 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.breadcrumbs-sep { margin: 0 6px; }
