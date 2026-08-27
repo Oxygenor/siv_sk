@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCollection } from '../hooks/useCollection'
 import { addItem, deleteItem, updateItem } from '../firebase/firestore'
-import { uploadFile } from '../firebase/storage'
+import { assetUrl } from '../utils/assetUrl'
 
 const emptyForm = { title: '', slug: '', body: '' }
 
@@ -16,7 +16,7 @@ function slugify(str) {
 export default function SectionsManager() {
   const { data: sections, loading } = useCollection('sections', { orderByField: 'createdAt' })
   const [form, setForm] = useState(emptyForm)
-  const [file, setFile] = useState(null)
+  const [fileFilename, setFileFilename] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [busy, setBusy] = useState(false)
 
@@ -35,7 +35,7 @@ export default function SectionsManager() {
 
   function resetForm() {
     setForm(emptyForm)
-    setFile(null)
+    setFileFilename('')
     setEditingId(null)
   }
 
@@ -44,11 +44,7 @@ export default function SectionsManager() {
     if (!form.title || !form.slug) return
     setBusy(true)
     try {
-      let fileUrl
-      if (file) {
-        const uploaded = await uploadFile(`sections/${Date.now()}_${file.name}`, file)
-        fileUrl = uploaded.url
-      }
+      const fileUrl = fileFilename.trim() ? assetUrl('sections', fileFilename) : undefined
       const payload = { ...form, ...(fileUrl ? { fileUrl } : {}) }
       if (editingId) {
         await updateItem('sections', editingId, payload)
@@ -89,8 +85,15 @@ export default function SectionsManager() {
           <textarea id="s-body" rows={6} value={form.body} onChange={(e) => update('body', e.target.value)} />
         </div>
         <div className="form-field">
-          <label htmlFor="s-file">Прикріплений файл (необов’язково)</label>
-          <input id="s-file" type="file" onChange={(e) => setFile(e.target.files?.[0] || null)} />
+          <label htmlFor="s-file">
+            Назва прикріпленого файлу в public/sections (необов’язково) — спершу завантажте файл на GitHub
+          </label>
+          <input
+            id="s-file"
+            placeholder="dodatok.pdf"
+            value={fileFilename}
+            onChange={(e) => setFileFilename(e.target.value)}
+          />
         </div>
         <div className="admin-table-actions">
           <button className="btn btn-primary" type="submit" disabled={busy}>

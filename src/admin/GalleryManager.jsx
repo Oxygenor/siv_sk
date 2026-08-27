@@ -1,50 +1,48 @@
 import { useState } from 'react'
 import { useCollection } from '../hooks/useCollection'
 import { addItem, deleteItem } from '../firebase/firestore'
-import { removeFile, uploadFile } from '../firebase/storage'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function GalleryManager() {
   const { data: photos, loading } = useCollection('gallery', { orderByField: 'createdAt' })
   const [album, setAlbum] = useState('')
   const [caption, setCaption] = useState('')
-  const [files, setFiles] = useState([])
+  const [filenames, setFilenames] = useState('')
   const [busy, setBusy] = useState(false)
-  const [progress, setProgress] = useState('')
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (!files.length) return
+    const names = filenames
+      .split('\n')
+      .map((n) => n.trim())
+      .filter(Boolean)
+    if (!names.length) return
     setBusy(true)
     try {
-      for (let i = 0; i < files.length; i += 1) {
-        const file = files[i]
-        setProgress(`Завантаження ${i + 1} з ${files.length}…`)
-        const uploaded = await uploadFile(`gallery/${Date.now()}_${file.name}`, file)
-        await addItem('gallery', {
-          url: uploaded.url,
-          storagePath: uploaded.path,
-          album: album || 'Без альбому',
-          caption,
-        })
+      for (const name of names) {
+        const url = assetUrl('gallery', name)
+        await addItem('gallery', { url, album: album || 'Без альбому', caption })
       }
-      setFiles([])
+      setFilenames('')
       setCaption('')
     } finally {
       setBusy(false)
-      setProgress('')
     }
   }
 
   async function handleDelete(photo) {
-    if (!confirm('Видалити це фото?')) return
-    await removeFile(photo.storagePath)
+    if (!confirm('Видалити цей запис з галереї? (сам файл у GitHub це не видалить)')) return
     await deleteItem('gallery', photo.id)
   }
 
   return (
     <div>
       <h1>Фотогалерея</h1>
-      <p className="muted">Завантажуйте фото подій. Можна одразу декілька файлів в один альбом.</p>
+      <p className="muted">
+        Спершу завантажте фото у папку <code>public/gallery</code> репозиторію на GitHub («Add file → Upload
+        files», можна одразу декілька файлів) і зачекайте ~1 хвилину, поки сайт перезбереться. Потім вкажіть
+        тут точні назви файлів (по одній на рядок) — вони одразу з'являться на сторінці «Фотогалерея».
+      </p>
 
       <form className="admin-panel" onSubmit={handleSubmit}>
         <div className="form-field">
@@ -56,18 +54,18 @@ export default function GalleryManager() {
           <input id="caption" value={caption} onChange={(e) => setCaption(e.target.value)} />
         </div>
         <div className="form-field">
-          <label htmlFor="photos">Фото</label>
-          <input
+          <label htmlFor="photos">Назви файлів у public/gallery (по одній на рядок)</label>
+          <textarea
             id="photos"
-            type="file"
-            accept="image/*"
-            multiple
+            rows={4}
             required
-            onChange={(e) => setFiles(Array.from(e.target.files || []))}
+            placeholder={'den-znan-1.jpg\nden-znan-2.jpg'}
+            value={filenames}
+            onChange={(e) => setFilenames(e.target.value)}
           />
         </div>
         <button className="btn btn-primary" type="submit" disabled={busy}>
-          {busy ? progress || 'Завантаження…' : 'Завантажити'}
+          {busy ? 'Збереження…' : 'Додати'}
         </button>
       </form>
 

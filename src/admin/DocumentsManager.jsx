@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCollection } from '../hooks/useCollection'
 import { addItem, deleteItem, updateItem } from '../firebase/firestore'
-import { removeFile, uploadFile } from '../firebase/storage'
+import { assetUrl } from '../utils/assetUrl'
 import { allDocumentSlots } from '../data/documents'
 
 export default function DocumentsManager() {
@@ -10,12 +10,12 @@ export default function DocumentsManager() {
   const [customTitle, setCustomTitle] = useState('')
   const [customCategory, setCustomCategory] = useState('')
   const [useCustom, setUseCustom] = useState(false)
-  const [file, setFile] = useState(null)
+  const [filename, setFilename] = useState('')
   const [busy, setBusy] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (!file) return
+    if (!filename.trim()) return
     setBusy(true)
     try {
       const slug = useCustom
@@ -26,22 +26,16 @@ export default function DocumentsManager() {
         : allDocumentSlots.find((d) => d.slug === slotSlug)?.title
       const category = useCustom ? customCategory || 'Інше' : allDocumentSlots.find((d) => d.slug === slotSlug)?.category
 
+      const fileUrl = assetUrl('documents', filename)
       const existing = documents.find((d) => d.slug === slug)
-      const uploaded = await uploadFile(`documents/${slug}-${Date.now()}-${file.name}`, file)
 
       if (existing) {
-        await removeFile(existing.storagePath)
-        await updateItem('documents', existing.id, {
-          fileUrl: uploaded.url,
-          storagePath: uploaded.path,
-          title,
-          category,
-        })
+        await updateItem('documents', existing.id, { fileUrl, title, category })
       } else {
-        await addItem('documents', { slug, title, category, fileUrl: uploaded.url, storagePath: uploaded.path })
+        await addItem('documents', { slug, title, category, fileUrl })
       }
 
-      setFile(null)
+      setFilename('')
       setCustomTitle('')
       setCustomCategory('')
     } finally {
@@ -50,8 +44,7 @@ export default function DocumentsManager() {
   }
 
   async function handleDelete(item) {
-    if (!confirm(`Видалити документ «${item.title}»?`)) return
-    await removeFile(item.storagePath)
+    if (!confirm(`Видалити запис про документ «${item.title}»? (сам файл у GitHub це не видалить)`)) return
     await deleteItem('documents', item.id)
   }
 
@@ -59,7 +52,9 @@ export default function DocumentsManager() {
     <div>
       <h1>Документи</h1>
       <p className="muted">
-        Завантажте офіційний файл (PDF/DOCX) для існуючого розділу сайту або створіть новий документ.
+        Спершу завантажте файл (PDF/DOCX) у папку <code>public/documents</code> репозиторію на GitHub
+        (кнопка «Add file → Upload files», прямо в браузері, без командного рядка) і зачекайте ~1 хвилину,
+        поки сайт перезбереться. Потім вкажіть тут точну назву файлу — вона з'явиться на сторінці «Документи».
       </p>
 
       <form className="admin-panel" onSubmit={handleSubmit}>
@@ -95,17 +90,23 @@ export default function DocumentsManager() {
         )}
 
         <div className="form-field">
-          <label htmlFor="doc-file">Файл</label>
-          <input id="doc-file" type="file" required onChange={(e) => setFile(e.target.files?.[0] || null)} />
+          <label htmlFor="doc-file">Назва файлу в public/documents (напр. statut.pdf)</label>
+          <input
+            id="doc-file"
+            required
+            placeholder="statut.pdf"
+            value={filename}
+            onChange={(e) => setFilename(e.target.value)}
+          />
         </div>
 
         <button className="btn btn-primary" type="submit" disabled={busy}>
-          {busy ? 'Завантаження…' : 'Завантажити документ'}
+          {busy ? 'Збереження…' : 'Зберегти'}
         </button>
       </form>
 
       <div className="admin-panel">
-        <h3>Завантажені документи</h3>
+        <h3>Додані документи</h3>
         {loading ? (
           <p className="muted">Завантаження…</p>
         ) : documents.length ? (
@@ -126,7 +127,7 @@ export default function DocumentsManager() {
             </div>
           ))
         ) : (
-          <p className="muted">Ще немає завантажених документів.</p>
+          <p className="muted">Ще немає доданих документів.</p>
         )}
       </div>
     </div>

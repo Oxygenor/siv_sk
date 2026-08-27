@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useCollection } from '../hooks/useCollection'
 import { addItem, deleteItem, updateItem } from '../firebase/firestore'
-import { uploadFile } from '../firebase/storage'
+import { assetUrl } from '../utils/assetUrl'
 
 const emptyForm = { title: '', excerpt: '', body: '' }
 
 export default function NewsManager() {
   const { data: news, loading } = useCollection('news', { orderByField: 'createdAt' })
   const [form, setForm] = useState(emptyForm)
-  const [file, setFile] = useState(null)
+  const [imageFilename, setImageFilename] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [busy, setBusy] = useState(false)
 
@@ -23,7 +23,7 @@ export default function NewsManager() {
 
   function resetForm() {
     setForm(emptyForm)
-    setFile(null)
+    setImageFilename('')
     setEditingId(null)
   }
 
@@ -32,11 +32,7 @@ export default function NewsManager() {
     if (!form.title || !form.body) return
     setBusy(true)
     try {
-      let imageUrl
-      if (file) {
-        const uploaded = await uploadFile(`news/${Date.now()}_${file.name}`, file)
-        imageUrl = uploaded.url
-      }
+      const imageUrl = imageFilename.trim() ? assetUrl('news', imageFilename) : undefined
       if (editingId) {
         await updateItem('news', editingId, { ...form, ...(imageUrl ? { imageUrl } : {}) })
       } else {
@@ -73,8 +69,15 @@ export default function NewsManager() {
           <textarea id="body" rows={6} required value={form.body} onChange={(e) => update('body', e.target.value)} />
         </div>
         <div className="form-field">
-          <label htmlFor="image">Зображення (необов’язково)</label>
-          <input id="image" type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
+          <label htmlFor="image">
+            Назва файлу зображення в public/news (необов’язково) — спершу завантажте файл на GitHub
+          </label>
+          <input
+            id="image"
+            placeholder="podia-2025.jpg"
+            value={imageFilename}
+            onChange={(e) => setImageFilename(e.target.value)}
+          />
         </div>
         <div className="admin-table-actions">
           <button className="btn btn-primary" type="submit" disabled={busy}>
