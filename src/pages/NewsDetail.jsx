@@ -1,15 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
-import Loader from '../components/Loader'
-import { useCollection } from '../hooks/useCollection'
+import { news } from '../data/news'
 import '../styles/news-detail.css'
 
 export default function NewsDetail() {
   const { id } = useParams()
-  const { data: news, loading } = useCollection('news')
   const item = news.find((n) => n.id === id)
 
-  if (loading) return <Loader />
   if (!item) {
     return (
       <section className="section container">
@@ -19,8 +16,8 @@ export default function NewsDetail() {
     )
   }
 
-  const date = item.createdAt?.toDate
-    ? item.createdAt.toDate().toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
+  const date = item.date
+    ? new Date(item.date).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
     : ''
 
   return (

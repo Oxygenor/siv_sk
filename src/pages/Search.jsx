@@ -3,14 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
 import { searchIndex } from '../data/nav'
-import { useCollection } from '../hooks/useCollection'
+import { news } from '../data/news'
+import { sections } from '../data/sections'
 
 export default function Search() {
   const [params] = useSearchParams()
   const initialQuery = params.get('q') || ''
   const [query, setQuery] = useState(initialQuery)
-  const { data: news } = useCollection('news')
-  const { data: sections } = useCollection('sections')
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -29,7 +28,7 @@ export default function Search() {
       .map((s) => ({ title: s.title, path: `/rozdily/${s.slug}`, type: 'Розділ' }))
 
     return [...pageMatches, ...newsMatches, ...sectionMatches]
-  }, [query, news, sections])
+  }, [query])
 
   return (
     <>

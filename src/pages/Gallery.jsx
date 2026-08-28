@@ -1,19 +1,21 @@
 import { useMemo, useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
-import Loader, { EmptyState } from '../components/Loader'
-import { useCollection } from '../hooks/useCollection'
+import { EmptyState } from '../components/Loader'
+import { gallery } from '../data/gallery'
+import { assetUrl } from '../utils/assetUrl'
 import '../styles/gallery.css'
 
+const photos = gallery.map((p) => ({ ...p, url: assetUrl('gallery', p.filename) }))
+
 export default function Gallery() {
-  const { data: photos, loading } = useCollection('gallery', { orderByField: 'createdAt' })
   const [active, setActive] = useState(null)
   const [albumFilter, setAlbumFilter] = useState('all')
 
   const albums = useMemo(() => {
     const set = new Set(photos.map((p) => p.album).filter(Boolean))
     return ['all', ...set]
-  }, [photos])
+  }, [])
 
   const visible = albumFilter === 'all' ? photos : photos.filter((p) => p.album === albumFilter)
 
@@ -38,9 +40,7 @@ export default function Gallery() {
             </div>
           )}
 
-          {loading ? (
-            <Loader />
-          ) : visible.length ? (
+          {visible.length ? (
             <div className="gallery-grid">
               {visible.map((photo) => (
                 <button key={photo.id} className="gallery-thumb" onClick={() => setActive(photo)}>
@@ -49,7 +49,7 @@ export default function Gallery() {
               ))}
             </div>
           ) : (
-            <EmptyState label="Фотографії з’являться тут, щойно адміністратор їх завантажить." />
+            <EmptyState label="Фотографії з’являться тут, щойно їх додадуть." />
           )}
         </div>
       </section>

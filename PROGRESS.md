@@ -4,7 +4,8 @@
 
 ## Що вже зроблено
 
-**Стек:** React 19 + Vite + react-router-dom + Firebase (Auth/Firestore/Storage — опціонально, для адмін-панелі новин/документів).
+**Стек:** React 19 + Vite + react-router-dom. Сайт повністю статичний — без бекенда,
+без бази даних, без адмін-панелі.
 
 **Структура (src/data/nav.js)** — уже побудована й відповідає розділам оригінального сайту
 (sites.google.com/view/sivshkola), перекладена в чисті маршрути: `/`, `/pro-gimnaziyu`,
@@ -12,48 +13,46 @@
 `/fotogalereya`, `/korysni-posylannya`, `/kontakty`.
 
 **Створені файли:**
-- `src/data/*.js` — nav, school (контакти), staff, events (шкільне життя 2025-2026), faq, links, documents (каталог "слотів" для документів — самих файлів ще нема)
+- `src/data/*.js` — nav, school (контакти), staff, events (шкільне життя 2025-2026), faq, links,
+  documents (каталог "слотів" для документів — самих файлів ще нема), news, gallery, sections
+  (усі три поки порожні масиви — контент ще не додано)
 - `src/pages/*.jsx` — Home, News, NewsDetail, Students, Parents, About, Documents, Library, LearningForms, Gallery, Contact, Links, Search, Sections, CustomSection, NotFound
-- `src/components/*.jsx` — Navbar, Footer, Layout, Breadcrumbs, NewsCard, QuickLinks, DocumentList, PageHero, Loader, ProtectedRoute, ScrollToHash, Section
-- `src/firebase/*` — config (читає env-змінні `VITE_FIREBASE_*`, гарно деградує до статичного сайту, якщо Firebase не налаштовано), auth, firestore, storage
-- `src/admin/*` — AdminLogin, AdminLayout, AdminDashboard, NewsManager, DocumentsManager, GalleryManager, SectionsManager, MessagesManager
-- **`src/App.jsx`/`main.jsx` вже підключені** — реальний `HashRouter` + `Layout` + всі публічні сторінки та захищені `/admin/*` маршрути. Перевірено 2026-08-27: запущено `npm run dev`, Playwright відкрив `/`, `/pro-gimnaziyu`, `/novyny`, `/kontakty` — реальний український контент рендериться, консоль без помилок.
+- `src/components/*.jsx` — Navbar, Footer, Layout, Breadcrumbs, NewsCard, QuickLinks, DocumentList, PageHero, Loader, ScrollToHash, Section
+- `src/App.jsx`/`main.jsx` — реальний `HashRouter` + `Layout` + всі публічні сторінки. Перевірено 2026-08-27: запущено `npm run dev`, Playwright відкрив `/`, `/pro-gimnaziyu`, `/novyny`, `/kontakty` — реальний український контент рендериться, консоль без помилок.
 
-## ✅ Зроблено сьогодні (2026-08-27)
+## ✅ Зроблено 2026-08-28 — повне видалення Firebase
 
-1. `git init` + перший коміт усього поточного стану (це виявилось справді не зробленим — виправлено).
-2. Перевірка App.jsx/main.jsx показала, що Router+Layout **вже підключені** — попередня нотатка про "типовий Vite-шаблон" була застарілою/неточною. Візуально підтверджено через headless Chromium (Playwright): головна, "Про гімназію", "Новини", "Контакти" — все рендериться коректно, стилізовано, без консольних помилок.
+Користувач вирішив (спільно з колегою) відмовитись від Firebase повністю (не лише
+Storage, як раніше, а й Auth і Firestore) — Firebase зараз платна для їхніх потреб.
+Сайт перероблено на повністю статичний:
 
-## Firebase — рішення та стан (2026-08-27)
+1. Видалено `src/firebase/`, `src/hooks/useAuth.js`, `src/hooks/useCollection.js`,
+   `src/admin/` (уся адмін-панель і логін), `src/components/ProtectedRoute.jsx`,
+   `firestore.rules`, залежність `firebase` з `package.json`, `.env.local`,
+   `VITE_FIREBASE_*` з `.env.example` і з `.github/workflows/deploy.yml`.
+2. Дані, що раніше жили у Firestore, стали статичними файлами:
+   `src/data/news.js`, `src/data/gallery.js`, `src/data/sections.js` (нові, поки
+   порожні масиви) та `src/data/documents.js` (додано опційне поле `filename` до
+   кожного слоту документа).
+3. Сторінки `News`, `NewsDetail`, `Gallery`, `Sections`, `CustomSection` та компонент
+   `DocumentList` переписані на прямий імпорт зі `src/data/*` замість
+   `useCollection(...)`. `NewsDetail`/`NewsCard` тепер форматують просте поле
+   `item.date` (рядок) замість Firestore Timestamp (`.toDate()`).
+4. Контактна форма (`Contact.jsx`) більше нічого нікуди не пише — кнопка
+   «Надіслати» формує `mailto:` посилання на пошту школи (`school.email`) з
+   темою й текстом листа і відкриває поштову програму відвідувача.
+5. `README.md` переписано під нову модель: розділ "Як додати контент" замість
+   Firebase-налаштування й адмін-панелі.
 
-Користувач вже має Firebase-проєкт `school-d9c92`, `firebaseConfig` вставлено в `.env.local`
-(не в git). Під час налаштування виявили: **Firebase з 2024 вимагає платний план Blaze
-навіть для звичайного Cloud Storage bucket** — навіть якщо реальне використання лишається
-безкоштовним, потрібна прив'язана картка. Користувач обрав **не підключати Storage** і
-не переходити на Blaze.
+**Ще не перевірено:** `npm install` (оновлення lock-файлу після видалення
+залежності `firebase`), `npm run build`, і повторний прогін через dev-сервер/Playwright
+для всіх маршрутів (включно з перевіркою, що `/admin` тепер віддає 404).
 
-**Реалізовано:** прибрано Firebase Storage з усього проєкту (`src/firebase/storage.js`,
-`storage.rules`, `VITE_FIREBASE_STORAGE_BUCKET` — видалено). Документи, фотогалерея,
-зображення новин і файли розділів тепер працюють так:
-1. Реальний файл заливається вручну через веб-інтерфейс GitHub (drag-and-drop) у
-   `public/documents|gallery|news|sections/`.
-2. Firestore (безкоштовний план Spark) зберігає лише метадані — назву, категорію/альбом,
-   підпис і назву файлу; посилання формується хелпером `src/utils/assetUrl.js`.
-3. `DocumentsManager`/`GalleryManager`/`NewsManager`/`SectionsManager` переписані під цю
-   модель (текстове поле "назва файлу" замість `<input type=file>`).
+## Firebase — більше не використовується
 
-Детальна інструкція для школи — у README.md, розділ "Як додати файл".
-Перевірено білдом (`npm run build`), лінтом (`oxlint`, чисто) і headless-браузером
-(Playwright): всі маршрути рендеряться без консольних помилок навіть до того, як в
-Firebase консолі увімкнено Auth/Firestore (додаток гарно деградує).
-
-## ⚠️ Найважливіше — ще НЕ зроблено
-
-1. **Firebase Authentication і Firestore Database ще не увімкнені в консолі** (Storage —
-   свідомо пропущено, див. вище). Користувачу треба: Authentication → Sign-in method →
-   Email/Password → додати користувача-адміна; Firestore Database → Create database
-   (test mode). Після цього — задеплоїти `firestore.rules` (`firebase deploy --only
-   firestore:rules --project school-d9c92`) і перевірити логін в `/admin`.
+Раніше був Firebase-проєкт `school-d9c92` для Auth/Firestore адмін-панелі — це
+рішення скасовано (див. вище), проєкт Firebase більше не потрібен і не
+використовується сайтом.
 
 ## Аудит контенту оригінального сайту (Google Sites) — статус
 
@@ -61,7 +60,7 @@ Firebase консолі увімкнено Auth/Firestore (додаток гар
 "Здобувачам освіти": розклад уроків, правила поведінки, критерії оцінювання, обов'язки,
 протидія булінгу, психологічна підтримка, дистанційне навчання) **завис на фоні (>1 год),
 хоча інші аналогічні агенти займали 40–90 сек** — ймовірно застряг на дозволі, який нікому
-було підтвердити. Завтра: перезапустити його з нуля (список 8 URL є в історії діалогу /
+було підтвердити. Треба: перезапустити його з нуля (список 8 URL є в історії діалогу /
 можна відновити з `/view/sivshkola/здобувачам-освіти/*`).
 
 ### Виявлена системна проблема
@@ -100,15 +99,16 @@ WebFetch бачить лише статичний HTML/markdown-знімок Goo
   осінні канікули 28.10–03.11.24 (перенесено на 23.12–27.12 наказом №76),
   зимові 28.12.24–12.01.25, весняні 24.03–30.03.25, останній дзвоник 30.05.25
 - Адміністрація: Дячук Наталія Михайлівна (директор), Ломачевська Наталія Анатоліївна (заступник з НВР)
-- 9 вчителів з іменами та предметами — див. `src/data/staff.js` (перевірити, чи вже перенесено)
+- 9 вчителів з іменами та предметами — вже перенесено в `src/data/staff.js`
 - Вакансій немає
 - Повний список зовнішніх посилань (Корисні посилання) — вже в `src/data/school.js` / `src/data/links.js`, звірити на повноту
 
 ## Наступні кроки (у порядку)
 
-1. Користувач вмикає Authentication (Email/Password + користувач-адмін) і Firestore Database в консолі Firebase (school-d9c92)
-2. Задеплоїти `firestore.rules`, перевірити логін в `/admin` та повний цикл "додав файл на GitHub → вказав назву в адмінці → з'явилось на сайті"
-3. Уточнити в користувача: чи структуру сайту (nav.js) вже затверджено — вона вже виглядає фінальною, але явного підтвердження в поточному контексті немає
-4. Перезапустити 7-й фоновий агент аудиту (сторінки "Здобувачам освіти")
-5. Вручну пройтись по списку файлів/сторінок вище, перенести реальний текст (особливо дзвінковий розклад із СТРУКТУРА 2023.docx — потрібен для сторінки розкладу)
-6. Порадити хостинг (GitHub Pages вже налаштовано в проєкті) і за згодою задеплоїти
+1. `npm install` (lock-файл після видалення firebase) → `npm run build` → dev-сервер +
+   Playwright по всіх маршрутах, включно з перевіркою, що `/admin` дає 404 і що кнопка
+   «Надіслати» на `/kontakty` відкриває коректний `mailto:`.
+2. Створити репозиторій на GitHub і залити проєкт (`git remote` ще не додано — див. розділ 3 README.md).
+3. Перезапустити 7-й фоновий агент аудиту (сторінки "Здобувачам освіти")
+4. Вручну пройтись по списку файлів/сторінок вище, перенести реальний текст (особливо дзвінковий розклад із СТРУКТУРА 2023.docx — потрібен для сторінки розкладу)
+5. Наповнити `src/data/news.js`, `gallery.js`, `sections.js` реальним контентом (див. розділ 2 README.md)

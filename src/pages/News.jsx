@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
 import NewsCard from '../components/NewsCard'
-import Loader, { EmptyState } from '../components/Loader'
-import { useCollection } from '../hooks/useCollection'
+import { EmptyState } from '../components/Loader'
+import { news } from '../data/news'
 import { events20252026, events20242025Note } from '../data/events'
 import '../styles/tabs.css'
 
@@ -16,7 +16,6 @@ const TABS = [
 
 export default function News() {
   const [tab, setTab] = useState('news')
-  const { data: news, loading } = useCollection('news', { orderByField: 'createdAt' })
 
   return (
     <>
@@ -40,16 +39,14 @@ export default function News() {
           </div>
 
           {tab === 'news' &&
-            (loading ? (
-              <Loader />
-            ) : news.length ? (
+            (news.length ? (
               <div className="grid grid-3">
                 {news.map((item) => (
                   <NewsCard key={item.id} item={item} />
                 ))}
               </div>
             ) : (
-              <EmptyState label="Новини з’являться тут одразу, як тільки адміністратор їх опублікує." />
+              <EmptyState label="Новини з’являться тут одразу, як тільки їх додадуть." />
             ))}
 
           {tab === '2025' && (

@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import './NewsCard.css'
 
-function formatDate(ts) {
-  if (!ts) return ''
-  const date = ts.toDate ? ts.toDate() : new Date(ts)
-  return date.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
+function formatDate(dateStr) {
+  if (!dateStr) return ''
+  return new Date(dateStr).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 export default function NewsCard({ item }) {
@@ -16,7 +15,7 @@ export default function NewsCard({ item }) {
         </div>
       )}
       <div className="news-card-body">
-        {item.createdAt && <span className="muted news-card-date">{formatDate(item.createdAt)}</span>}
+        {item.date && <span className="muted news-card-date">{formatDate(item.date)}</span>}
         <h3>
           <Link to={`/novyny/${item.id}`}>{item.title}</Link>
         </h3>

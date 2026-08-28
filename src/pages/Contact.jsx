@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
-import { addItem } from '../firebase/firestore'
-import { isFirebaseConfigured } from '../firebase/config'
 import { school } from '../data/school'
 import '../styles/contact.css'
 
@@ -10,23 +8,17 @@ const initialForm = { name: '', email: '', message: '' }
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }))
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) return
-    setStatus('sending')
-    try {
-      await addItem('messages', { ...form, read: false })
-      setStatus('sent')
-      setForm(initialForm)
-    } catch {
-      setStatus('error')
-    }
+    const subject = `Повідомлення з сайту від ${form.name}`
+    const body = `${form.message}\n\nВідповідь надсилайте на: ${form.email}`
+    window.location.href = `mailto:${school.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   return (
@@ -65,12 +57,7 @@ export default function Contact() {
 
           <form className="card contact-form" onSubmit={handleSubmit}>
             <h2>Написати повідомлення</h2>
-            {!isFirebaseConfigured && (
-              <p className="muted">
-                Форма поки не підключена до бази даних. Скористайтесь, будь ласка, телефоном або
-                електронною поштою зліва.
-              </p>
-            )}
+            <p className="muted">Кнопка нижче відкриє вашу поштову програму з готовим листом до школи.</p>
             <div className="form-field">
               <label htmlFor="name">Ім’я</label>
               <input id="name" required value={form.name} onChange={(e) => update('name', e.target.value)} />
@@ -95,13 +82,9 @@ export default function Contact() {
                 onChange={(e) => update('message', e.target.value)}
               />
             </div>
-            <button className="btn btn-primary" type="submit" disabled={status === 'sending' || !isFirebaseConfigured}>
-              {status === 'sending' ? 'Надсилання…' : 'Надіслати'}
+            <button className="btn btn-primary" type="submit">
+              Надіслати
             </button>
-            {status === 'sent' && <p className="contact-status contact-status-ok">Дякуємо! Ваше повідомлення надіслано.</p>}
-            {status === 'error' && (
-              <p className="contact-status contact-status-error">Не вдалося надіслати. Спробуйте пізніше або зателефонуйте нам.</p>
-            )}
           </form>
         </div>
       </section>

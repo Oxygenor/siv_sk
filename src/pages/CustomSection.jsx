@@ -1,14 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
-import Loader from '../components/Loader'
-import { useCollection } from '../hooks/useCollection'
+import { sections } from '../data/sections'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function CustomSection() {
   const { slug } = useParams()
-  const { data: sections, loading } = useCollection('sections')
   const item = sections.find((s) => s.slug === slug)
 
-  if (loading) return <Loader />
   if (!item) {
     return (
       <section className="section container">
@@ -18,14 +16,16 @@ export default function CustomSection() {
     )
   }
 
+  const fileUrl = assetUrl('sections', item.filename)
+
   return (
     <>
       <Breadcrumbs items={[{ to: '/rozdily', label: 'Розділи' }, { label: item.title }]} />
       <article className="section container news-detail">
         <h1>{item.title}</h1>
         <p style={{ whiteSpace: 'pre-wrap' }}>{item.body}</p>
-        {item.fileUrl && (
-          <a className="btn btn-outline" href={item.fileUrl} target="_blank" rel="noreferrer">
+        {fileUrl && (
+          <a className="btn btn-outline" href={fileUrl} target="_blank" rel="noreferrer">
             Завантажити прикріплений файл
           </a>
         )}

@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
-import { useCollection } from '../hooks/useCollection'
 import NewsCard from '../components/NewsCard'
 import QuickLinks from '../components/QuickLinks'
-import Loader, { EmptyState } from '../components/Loader'
+import { EmptyState } from '../components/Loader'
 import { school } from '../data/school'
+import { news } from '../data/news'
 import { events20252026 } from '../data/events'
 import './Home.css'
 
 export default function Home() {
-  const { data: news, loading } = useCollection('news', { orderByField: 'createdAt' })
   const latestNews = news.slice(0, 3)
   const nextEvents = events20252026.slice(0, 6)
 
@@ -64,16 +63,14 @@ export default function Home() {
               Усі новини
             </Link>
           </div>
-          {loading ? (
-            <Loader />
-          ) : latestNews.length ? (
+          {latestNews.length ? (
             <div className="grid grid-3">
               {latestNews.map((item) => (
                 <NewsCard key={item.id} item={item} />
               ))}
             </div>
           ) : (
-            <EmptyState label="Новини з’являться тут одразу, як тільки адміністратор їх опублікує." />
+            <EmptyState label="Новини з’являться тут одразу, як тільки їх додадуть." />
           )}
         </div>
       </section>

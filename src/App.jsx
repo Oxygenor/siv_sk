@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import Loader from './components/Loader'
-import ProtectedRoute from './components/ProtectedRoute'
 
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -20,15 +19,6 @@ const Search = lazy(() => import('./pages/Search'))
 const Sections = lazy(() => import('./pages/Sections'))
 const CustomSection = lazy(() => import('./pages/CustomSection'))
 const NotFound = lazy(() => import('./pages/NotFound'))
-
-const AdminLogin = lazy(() => import('./admin/AdminLogin'))
-const AdminLayout = lazy(() => import('./admin/AdminLayout'))
-const AdminDashboard = lazy(() => import('./admin/AdminDashboard'))
-const NewsManager = lazy(() => import('./admin/NewsManager'))
-const DocumentsManager = lazy(() => import('./admin/DocumentsManager'))
-const GalleryManager = lazy(() => import('./admin/GalleryManager'))
-const SectionsManager = lazy(() => import('./admin/SectionsManager'))
-const MessagesManager = lazy(() => import('./admin/MessagesManager'))
 
 function Fallback() {
   return (
@@ -60,23 +50,6 @@ export default function App() {
             <Route path="/rozdily" element={<Sections />} />
             <Route path="/rozdily/:slug" element={<CustomSection />} />
             <Route path="*" element={<NotFound />} />
-          </Route>
-
-          <Route path="/admin" element={<AdminLogin />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="news" element={<NewsManager />} />
-            <Route path="documents" element={<DocumentsManager />} />
-            <Route path="gallery" element={<GalleryManager />} />
-            <Route path="sections" element={<SectionsManager />} />
-            <Route path="messages" element={<MessagesManager />} />
           </Route>
         </Routes>
       </Suspense>
