@@ -2,6 +2,28 @@
 
 > Нотатка для себе (Claude) на завтра. Читай це першим, коли повернешся до O:\siteSchool.
 
+## Деплой і домен (2026-08-28)
+
+Сайт живий на GitHub Pages з кастомним доменом **https://syvakovetska.vn.ua/**
+(репозиторій `Oxygenor/siv_sk`, публічний — приватні репо не підтримують безкоштовний
+Pages). DNS (CNAME → oxygenor.github.io) розповсюджено й підтверджено.
+
+**SEO:** перейшли з `HashRouter` на `BrowserRouter` (адреси тепер `/novyny` замість
+`/#/novyny` — Google індексує лише частину URL до `#`, тож підсторінки не індексувались
+би окремо). Для GitHub Pages (немає серверних рерайтів) `deploy.yml` копіює
+`dist/index.html` → `dist/404.html` після білда — це стандартний трюк для SPA на
+статичному хостингу. Побічний ефект: також полагодив якорне прокручування
+(`/pro-gimnaziyu#administratsiya` тощо) — під HashRouter це було технічно неможливо
+коректно (два `#` в одній адресі), тепер працює. Додано `public/robots.txt` і
+`public/sitemap.xml` (перелічує лише статичні маршрути — коли додасте реальні новини
+в `news.js` чи розділи в `sections.js`, сторінки `/novyny/:id` і `/rozdily/:slug`
+варто буде дописати в sitemap вручну).
+
+**Ще треба (користувачу):** зареєструвати сайт у Google Search Console
+(search.google.com/search-console), додати властивість для `syvakovetska.vn.ua`,
+підтвердити власність (через DNS TXT-запис або HTML-файл) і надіслати
+`https://syvakovetska.vn.ua/sitemap.xml` на індексацію.
+
 ## Що вже зроблено
 
 **Стек:** React 19 + Vite + react-router-dom. Сайт повністю статичний — без бекенда,

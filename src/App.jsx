@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import Loader from './components/Loader'
 
@@ -30,7 +30,7 @@ function Fallback() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Suspense fallback={<Fallback />}>
         <Routes>
           <Route element={<Layout />}>
@@ -53,6 +53,6 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
