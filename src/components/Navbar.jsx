@@ -56,7 +56,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <li
                 key={item.to}
-                className={item.anchors ? 'has-dropdown' : ''}
+                className={`${item.anchors ? 'has-dropdown' : ''} ${openMenu === item.to ? 'is-open' : ''}`.trim()}
                 onMouseEnter={() => item.anchors && setOpenMenu(item.to)}
                 onMouseLeave={() => item.anchors && setOpenMenu(null)}
               >

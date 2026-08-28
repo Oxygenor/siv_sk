@@ -93,8 +93,12 @@
 }
 .navbar-nav > ul > li {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
+}
+.navbar-nav > ul > li.is-open {
+  z-index: 20;
 }
 .navbar-nav-row {
   display: flex;
@@ -130,6 +134,7 @@
   margin: 0;
   padding: 8px;
   position: absolute;
+  z-index: 20;
   top: 100%;
   left: 0;
   min-width: 260px;
