@@ -11,13 +11,33 @@ const photos = gallery.map((p) => ({ ...p, url: assetUrl('gallery', p.filename) 
 export default function Gallery() {
   const [active, setActive] = useState(null)
   const [albumFilter, setAlbumFilter] = useState('all')
+  const [eventFilter, setEventFilter] = useState('all')
 
   const albums = useMemo(() => {
     const set = new Set(photos.map((p) => p.album).filter(Boolean))
     return ['all', ...set]
   }, [])
 
-  const visible = albumFilter === 'all' ? photos : photos.filter((p) => p.album === albumFilter)
+  const events = useMemo(() => {
+    if (albumFilter === 'all') return []
+    const seen = new Set()
+    const list = []
+    for (const p of photos) {
+      if (p.album === albumFilter && p.event && !seen.has(p.event)) {
+        seen.add(p.event)
+        list.push(p.event)
+      }
+    }
+    return list
+  }, [albumFilter])
+
+  function selectAlbum(album) {
+    setAlbumFilter(album)
+    setEventFilter('all')
+  }
+
+  const byAlbum = albumFilter === 'all' ? photos : photos.filter((p) => p.album === albumFilter)
+  const visible = eventFilter === 'all' ? byAlbum : byAlbum.filter((p) => p.event === eventFilter)
 
   return (
     <>
@@ -32,9 +52,29 @@ export default function Gallery() {
                 <button
                   key={a}
                   className={`btn btn-sm ${albumFilter === a ? 'btn-primary' : 'btn-outline'}`}
-                  onClick={() => setAlbumFilter(a)}
+                  onClick={() => selectAlbum(a)}
                 >
                   {a === 'all' ? 'Усі альбоми' : a}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {events.length > 1 && (
+            <div className="gallery-filters gallery-filters-events">
+              <button
+                className={`btn btn-sm ${eventFilter === 'all' ? 'btn-primary' : 'btn-outline'}`}
+                onClick={() => setEventFilter('all')}
+              >
+                Усі події
+              </button>
+              {events.map((e) => (
+                <button
+                  key={e}
+                  className={`btn btn-sm ${eventFilter === e ? 'btn-primary' : 'btn-outline'}`}
+                  onClick={() => setEventFilter(e)}
+                >
+                  {e}
                 </button>
               ))}
             </div>
