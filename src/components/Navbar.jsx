@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { navItems } from '../data/nav'
 import { school } from '../data/school'
@@ -17,6 +17,15 @@ export default function Navbar() {
     setQuery('')
     setOpen(false)
   }
+
+  useEffect(() => {
+    if (!open) return
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [open])
 
   return (
     <header className="navbar">
@@ -41,7 +50,7 @@ export default function Navbar() {
         </Link>
 
         <button
-          className="navbar-toggle"
+          className={`navbar-toggle ${open ? 'is-open' : ''}`}
           aria-label={open ? 'Закрити меню' : 'Відкрити меню'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -50,6 +59,8 @@ export default function Navbar() {
           <span />
           <span />
         </button>
+
+        {open && <div className="navbar-backdrop" onClick={() => setOpen(false)} aria-hidden="true" />}
 
         <nav className={`navbar-nav ${open ? 'is-open' : ''}`} aria-label="Основна навігація">
           <ul>
