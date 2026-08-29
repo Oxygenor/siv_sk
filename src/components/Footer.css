@@ -1,5 +1,5 @@
 .footer {
-  background: var(--color-primary-dark);
+  background: var(--color-brand-dark);
   color: #dfe8f7;
   margin-top: 64px;
 }
@@ -72,7 +72,7 @@
   padding: 8px 12px;
   font-size: 0.85rem;
   text-align: center;
-  color: var(--color-primary-dark, #14213d);
+  color: var(--color-brand-dark, #14213d);
 }
 
 .footer-facebook-link {
