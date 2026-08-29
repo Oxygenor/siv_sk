@@ -39,15 +39,17 @@
   border-radius: 50%;
   filter: blur(10px);
 }
-.hero-art-emoji {
-  font-size: 8rem;
+.hero-art-icon {
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
   position: relative;
 }
 
 @media (max-width: 800px) {
   .hero-inner { grid-template-columns: 1fr; padding-top: 36px; }
   .hero-art { height: 160px; order: -1; }
-  .hero-art-emoji { font-size: 5rem; }
+  .hero-art-icon { width: 150px; height: 150px; }
 }
 
 .section-heading-row {

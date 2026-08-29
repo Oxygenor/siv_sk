@@ -44,7 +44,7 @@ export default function Home() {
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="hero-art-blob" />
-            <div className="hero-art-emoji">🏫</div>
+            <img className="hero-art-icon" src={`${import.meta.env.BASE_URL}iconSite.png`} alt="" />
           </div>
         </div>
       </section>
