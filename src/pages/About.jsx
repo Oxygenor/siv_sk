@@ -2,7 +2,20 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
 import Section from '../components/Section'
 import { administration, teachers } from '../data/staff'
+import { assetUrl } from '../utils/assetUrl'
 import '../styles/person-card.css'
+
+function PersonAvatar({ person }) {
+  const photoUrl = assetUrl('staff', person.photo)
+  if (photoUrl) {
+    return <img className="person-card-avatar" src={photoUrl} alt="" />
+  }
+  return (
+    <div className="person-card-avatar person-card-avatar-fallback" aria-hidden="true">
+      {person.name.charAt(0)}
+    </div>
+  )
+}
 
 export default function About() {
   return (
@@ -31,9 +44,7 @@ export default function About() {
         <div className="grid grid-2">
           {administration.map((person) => (
             <div className="card person-card" key={person.name}>
-              <div className="person-card-avatar" aria-hidden="true">
-                {person.name.charAt(0)}
-              </div>
+              <PersonAvatar person={person} />
               <div>
                 <h3>{person.name}</h3>
                 <p className="muted">{person.role}</p>
@@ -47,9 +58,7 @@ export default function About() {
         <div className="grid grid-3">
           {teachers.map((person) => (
             <div className="card person-card" key={person.name}>
-              <div className="person-card-avatar" aria-hidden="true">
-                {person.name.charAt(0)}
-              </div>
+              <PersonAvatar person={person} />
               <div>
                 <h3>{person.name}</h3>
                 <p className="muted">{person.subject}</p>
