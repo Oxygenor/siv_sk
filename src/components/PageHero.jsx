@@ -1,6 +1,9 @@
+import { usePageMeta } from '../hooks/usePageMeta'
 import './PageHero.css'
 
 export default function PageHero({ eyebrow, title, lead }) {
+  usePageMeta(title, lead)
+
   return (
     <section className="page-hero">
       <div className="container">

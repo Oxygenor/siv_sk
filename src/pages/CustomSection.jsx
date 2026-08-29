@@ -1,11 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { sections } from '../data/sections'
 import { assetUrl } from '../utils/assetUrl'
 
 export default function CustomSection() {
   const { slug } = useParams()
   const item = sections.find((s) => s.slug === slug)
+
+  usePageMeta(item?.title ?? 'Розділ не знайдено', item?.body?.slice(0, 160))
 
   if (!item) {
     return (

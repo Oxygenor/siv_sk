@@ -2,6 +2,30 @@
 
 > Нотатка для себе (Claude) на завтра. Читай це першим, коли повернешся до O:\siteSchool.
 
+## ✅ Зроблено 2026-08-29 — динамічні `<title>`/meta/JSON-LD
+
+Технічне SEO-покращення (продовження роботи 2026-08-28): раніше всі сторінки мали
+однаковий `<title>` і `<meta name="description">` з `index.html` — Google бачив би
+всі сторінки з однаковою назвою й описом у видачі. Додано:
+
+- `src/hooks/usePageMeta.js` — хук на `useEffect`, що на кожній сторінці виставляє
+  унікальні `document.title` (формат «Заголовок — Сиваковецька гімназія»),
+  `<meta name="description">` і `<link rel="canonical">` з фактичного `pathname`.
+- Підключено всередину `PageHero.jsx` (title/lead передаються автоматично для 12
+  сторінок, які його використовують) + вручну в `Home`, `NotFound`, `NewsDetail`,
+  `CustomSection` (де своя логіка заголовка/опису, зокрема з тексту новини/розділу).
+- В `index.html` додано JSON-LD (`schema.org/School`) зі статичними даними закладу
+  (назва, адреса, телефон, email, Facebook) — для розширених сніпетів у Google.
+
+Перевірено Playwright-скриптом (`npx playwright`, бо `chromium-cli` в цьому
+середовищі не встановлений): `/`, `/pro-gimnaziyu`, `/uchnyam`, неіснуючий маршрут —
+на кожній свій title/description/canonical, консоль без помилок. `npm run lint` і
+`npm run build` чисті.
+
+**Не зроблено (свідомо):** OpenGraph/Twitter-теги, prerendering/SSR для першого
+пейнту (Googlebot виконує JS, тому client-side достатньо для GitHub Pages без
+бекенда) — можна додати пізніше, якщо знадобиться соцшеринг зі превʼю.
+
 ## Деплой і домен (2026-08-28)
 
 Сайт живий на GitHub Pages з кастомним доменом **https://syvakovetska.vn.ua/**

@@ -2,12 +2,17 @@ import { Link } from 'react-router-dom'
 import NewsCard from '../components/NewsCard'
 import QuickLinks from '../components/QuickLinks'
 import { EmptyState } from '../components/Loader'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { school } from '../data/school'
 import { news } from '../data/news'
 import { events20252026 } from '../data/events'
 import './Home.css'
 
 export default function Home() {
+  usePageMeta(
+    null,
+    'Комунальний заклад «Сиваковецька гімназія» — новини, розклад, документи та контакти закладу освіти в селі Сиваківці.',
+  )
   const latestNews = news.slice(0, 3)
   const nextEvents = events20252026.slice(0, 6)
 

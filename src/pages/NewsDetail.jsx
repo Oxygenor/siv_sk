@@ -1,11 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { news } from '../data/news'
 import '../styles/news-detail.css'
 
 export default function NewsDetail() {
   const { id } = useParams()
   const item = news.find((n) => n.id === id)
+
+  usePageMeta(item?.title ?? 'Новину не знайдено', item?.body?.slice(0, 160))
 
   if (!item) {
     return (
