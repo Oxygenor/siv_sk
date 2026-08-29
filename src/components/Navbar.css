@@ -178,7 +178,8 @@
 .navbar-search input {
   border: none;
   padding: 8px 12px;
-  width: 160px;
+  width: 170px;
+  font-size: 0.85rem;
   background: transparent;
   color: var(--color-text);
 }
