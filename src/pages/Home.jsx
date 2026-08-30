@@ -36,7 +36,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="hero-tags">
-              <span className="badge">Гаряче харчування</span>
+              <span className="badge">Харчування</span>
               <span className="badge">Дистанційне навчання</span>
               <span className="badge">Психологічна підтримка</span>
               <span className="badge">Протидія булінгу</span>
