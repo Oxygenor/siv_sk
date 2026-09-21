@@ -6,6 +6,7 @@ export const school = {
   phoneHref: 'tel:+380672345829',
   email: 'siv_sk@ua.fm',
   facebook: 'https://www.facebook.com/groups/503170143965635/',
+  googleProfile: 'https://share.google/po9YbjVjNohW0IYL8',
 }
 
 export const externalPortals = [

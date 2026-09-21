@@ -45,6 +45,12 @@ export default function Contact() {
                 Група гімназії
               </a>
             </p>
+            <p>
+              <strong>Google:</strong>{' '}
+              <a href={school.googleProfile} target="_blank" rel="noreferrer">
+                Профіль на Google
+              </a>
+            </p>
             <div className="contact-map">
               <iframe
                 title="Карта — Сиваковецька гімназія"
