@@ -2,7 +2,7 @@ export const administration = [
   {
     name: 'Дячук Наталія Михайлівна',
     role: 'Директор гімназії',
-    photo: 'dyachuk.jpg',
+    photo: 'dyachuk.png',
   },
   {
     name: 'Ломачевська Наталія Анатоліївна',
