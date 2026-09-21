@@ -33,6 +33,13 @@ jobs:
       - name: SPA fallback for GitHub Pages (clean URLs)
         run: cp dist/index.html dist/404.html
 
+      - name: Prerender static routes as real folders (avoids serving them via 404 fallback)
+        run: |
+          for route in pro-gimnaziyu novyny uchnyam batkam dokumenty biblioteka formy-navchannya fotogalereya korysni-posylannya kontakty poshuk rozdily; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
