@@ -3,6 +3,7 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { sections } from '../data/sections'
 import { assetUrl } from '../utils/assetUrl'
+import '../styles/news-detail.css'
 
 export default function CustomSection() {
   const { slug } = useParams()
@@ -21,6 +22,8 @@ export default function CustomSection() {
 
   const fileUrl = assetUrl('sections', item.filename)
   const photos = item.photos ?? []
+  const hours = item.hours ?? []
+  const todayIndex = (new Date().getDay() + 6) % 7
 
   return (
     <>
@@ -28,6 +31,20 @@ export default function CustomSection() {
       <article className="section container news-detail">
         <h1>{item.title}</h1>
         {item.body && <p style={{ whiteSpace: 'pre-wrap' }}>{item.body}</p>}
+        {hours.length > 0 && (
+          <table className="hours-table">
+            <tbody>
+              {hours.map((row, i) => (
+                <tr key={row.day} className={i === todayIndex ? 'hours-today' : undefined}>
+                  <th scope="row">{row.day}</th>
+                  <td className={row.closed ? 'hours-closed' : undefined}>
+                    {row.closed ? 'Зачинено' : row.time}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
         {photos.length > 0 && (
           <div className="section-photo-grid">
             {photos.map((photo) => (

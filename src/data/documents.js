@@ -36,7 +36,7 @@ export const documentCategories = [
     id: 'edu-process',
     title: 'Освітній процес',
     items: [
-      { slug: 'rezhym-roboty', title: 'Режим роботи закладу' },
+      { slug: 'rezhym-roboty', title: 'Режим роботи закладу', pageSlug: 'rezhym-roboty' },
       {
         slug: 'osvitnya-programa',
         title: 'Освітня програма',

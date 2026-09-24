@@ -17,3 +17,43 @@
   object-fit: cover;
   border-radius: var(--radius-md);
 }
+
+.hours-table {
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  border-collapse: collapse;
+  margin: 16px 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+.hours-table tr {
+  border-bottom: 1px solid var(--color-border);
+}
+.hours-table tr:last-child {
+  border-bottom: none;
+}
+.hours-table th,
+.hours-table td {
+  padding: 10px 16px;
+  text-align: left;
+  font-weight: 400;
+}
+.hours-table th {
+  color: var(--color-text-muted);
+}
+.hours-table td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.hours-table .hours-closed {
+  color: var(--color-danger);
+}
+.hours-table .hours-today {
+  background: var(--color-primary-light);
+}
+.hours-table .hours-today th,
+.hours-table .hours-today td {
+  font-weight: 700;
+}
