@@ -102,7 +102,7 @@ export const documentCategories = [
         title: 'Порядок подання заяв про випадки булінгу',
         driveUrl: 'https://drive.google.com/file/d/1GGYVysXscLKF09nJGyLGQ-vUoP9G_Gc0/view',
       },
-      { slug: 'covid-19', title: 'Covid-19 — рекомендації' },
+      { slug: 'covid-19', title: 'Covid-19 — рекомендації', pageSlug: 'covid-19' },
     ],
   },
   {
