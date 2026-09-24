@@ -103,6 +103,16 @@ export const sections = [
           'atestaciya-15.jpg',
         ],
       },
+      {
+        title: '',
+        photos: [
+          'atestaciya2-01.jpg',
+          'atestaciya2-02.jpg',
+          'atestaciya2-03.jpg',
+          'atestaciya2-04.jpg',
+          'atestaciya2-05.jpg',
+        ],
+      },
     ],
   },
   {

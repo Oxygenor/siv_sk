@@ -56,8 +56,8 @@ export default function CustomSection() {
             ))}
           </div>
         )}
-        {photoGroups.map((group) => (
-          <PhotoSlider key={group.title} title={group.title} photos={group.photos} />
+        {photoGroups.map((group, i) => (
+          <PhotoSlider key={i} title={group.title} photos={group.photos} />
         ))}
         {fileUrl && (
           <a className="btn btn-outline" href={fileUrl} target="_blank" rel="noreferrer">
