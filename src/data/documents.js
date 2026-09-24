@@ -38,8 +38,16 @@ export const documentCategories = [
     title: 'Учням',
     items: [
       { slug: 'rozklad-urokiv', title: 'Розклад уроків' },
-      { slug: 'pravyla-povedinky', title: 'Правила поведінки здобувачів освіти' },
-      { slug: 'kryterii-ocinyuvannya', title: 'Критерії оцінювання' },
+      {
+        slug: 'pravyla-povedinky',
+        title: 'Правила поведінки здобувачів освіти',
+        filename: 'правила поведінки.pdf',
+      },
+      {
+        slug: 'kryterii-ocinyuvannya',
+        title: 'Критерії оцінювання',
+        filename: 'критерії оцінювання.pdf',
+      },
       { slug: 'obovyazky-zdobuvachiv', title: 'Обов’язки здобувачів освіти' },
     ],
   },
@@ -47,7 +55,11 @@ export const documentCategories = [
     id: 'parents',
     title: 'Батькам',
     items: [
-      { slug: 'pravyla-pryyomu', title: 'Правила прийому до школи' },
+      {
+        slug: 'pravyla-pryyomu',
+        title: 'Правила прийому до школи',
+        filename: 'Правила прийому до закладу освіти.pdf',
+      },
       { slug: 'organizaciya-harchuvannya', title: 'Організація харчування' },
     ],
   },
