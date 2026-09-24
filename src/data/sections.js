@@ -116,6 +116,12 @@ export const sections = [
     ],
   },
   {
+    slug: 'organizaciya-harchuvannya',
+    title: 'Організація харчування',
+    body: '',
+    photos: ['harchuvannya-01.jpg', 'harchuvannya-02.jpg', 'harchuvannya-03.jpg'],
+  },
+  {
     slug: 'monitoryng-yakosti',
     title: 'Моніторинг якості освіти',
     body: '',

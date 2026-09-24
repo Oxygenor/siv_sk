@@ -122,7 +122,11 @@ export const documentCategories = [
         title: 'Правила прийому до школи',
         filename: 'Правила прийому до закладу освіти.pdf',
       },
-      { slug: 'organizaciya-harchuvannya', title: 'Організація харчування' },
+      {
+        slug: 'organizaciya-harchuvannya',
+        title: 'Організація харчування',
+        pageSlug: 'organizaciya-harchuvannya',
+      },
     ],
   },
   {
