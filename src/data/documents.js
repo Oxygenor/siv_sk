@@ -65,7 +65,11 @@ export const documentCategories = [
         title: 'Моніторинг якості освіти',
         pageSlug: 'monitoryng-yakosti',
       },
-      { slug: 'atestaciya-uchyteliv', title: 'Атестація учителів' },
+      {
+        slug: 'atestaciya-uchyteliv',
+        title: 'Атестація учителів',
+        pageSlug: 'atestaciya-uchyteliv',
+      },
       {
         slug: 'akademichna-dobrochesnist',
         title: 'Положення про академічну доброчесність',

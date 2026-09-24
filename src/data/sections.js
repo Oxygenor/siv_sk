@@ -79,6 +79,33 @@ export const sections = [
 Відповідно до статті 10 Конституції України українська мова є державною мовою, а відповідно до статті 7 Закону України «Про освіту» мовою освітнього процесу в закладах освіти є державна мова. Усі навчальні предмети, документація закладу та спілкування в освітньому процесі здійснюються українською мовою.`,
   },
   {
+    slug: 'atestaciya-uchyteliv',
+    title: 'Атестація учителів',
+    body: '',
+    photoGroups: [
+      {
+        title: '',
+        photos: [
+          'atestaciya-01.jpg',
+          'atestaciya-02.jpg',
+          'atestaciya-03.jpg',
+          'atestaciya-04.jpg',
+          'atestaciya-05.jpg',
+          'atestaciya-06.jpg',
+          'atestaciya-07.jpg',
+          'atestaciya-08.jpg',
+          'atestaciya-09.jpg',
+          'atestaciya-10.jpg',
+          'atestaciya-11.jpg',
+          'atestaciya-12.jpg',
+          'atestaciya-13.jpg',
+          'atestaciya-14.jpg',
+          'atestaciya-15.jpg',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'monitoryng-yakosti',
     title: 'Моніторинг якості освіти',
     body: '',
