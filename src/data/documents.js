@@ -42,7 +42,11 @@ export const documentCategories = [
         title: 'Освітня програма',
         driveUrl: 'https://docs.google.com/folderview?id=1-weCiCT0lKlNsYiBefNpre2kdaSpMYa4',
       },
-      { slug: 'richnyi-plan', title: 'Річний план роботи закладу' },
+      {
+        slug: 'richnyi-plan',
+        title: 'Річний план роботи закладу',
+        driveUrl: 'https://drive.google.com/file/d/1o2YQT5H9DbeFfLmeW4HIzeEvqHx0cWnN/view',
+      },
       { slug: 'struktura-navch-roku', title: 'Структура навчального року' },
       {
         slug: 'shtatnyi-rozpys',
@@ -54,8 +58,16 @@ export const documentCategories = [
       { slug: 'struktura-upravlinnya', title: 'Структура управління закладу' },
       { slug: 'monitoryng-yakosti', title: 'Моніторинг якості освіти' },
       { slug: 'atestaciya-uchyteliv', title: 'Атестація учителів' },
-      { slug: 'akademichna-dobrochesnist', title: 'Положення про академічну доброчесність' },
-      { slug: 'strategiya-rozvytku', title: 'Стратегія розвитку закладу' },
+      {
+        slug: 'akademichna-dobrochesnist',
+        title: 'Положення про академічну доброчесність',
+        driveUrl: 'https://drive.google.com/file/d/1umvGQ7UNFSETbz1D-WO17eNtacNGDyLE/view',
+      },
+      {
+        slug: 'strategiya-rozvytku',
+        title: 'Стратегія розвитку закладу',
+        driveUrl: 'https://drive.google.com/file/d/1dlVIuwai8mTy0alqYOIg6w5TwmZb6RTH/view',
+      },
     ],
   },
   {
