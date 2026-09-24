@@ -82,7 +82,11 @@ export const documentCategories = [
         title: 'Критерії оцінювання',
         filename: 'критерії оцінювання.pdf',
       },
-      { slug: 'obovyazky-zdobuvachiv', title: 'Обов’язки здобувачів освіти' },
+      {
+        slug: 'obovyazky-zdobuvachiv',
+        title: 'Обов’язки здобувачів освіти',
+        pageSlug: 'obovyazky-zdobuvachiv',
+      },
     ],
   },
   {
