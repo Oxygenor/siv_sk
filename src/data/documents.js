@@ -62,7 +62,16 @@ export const documentCategories = [
     id: 'students',
     title: 'Учням',
     items: [
-      { slug: 'rozklad-urokiv', title: 'Розклад уроків' },
+      {
+        slug: 'rozklad-urokiv-1-4',
+        title: 'Розклад уроків 1-4 класи',
+        filename: 'rozklad_1-4_klasy.pdf',
+      },
+      {
+        slug: 'rozklad-urokiv-5-9',
+        title: 'Розклад уроків 5-9 класи',
+        filename: 'rozklad_5-9_klasy.pdf',
+      },
       {
         slug: 'pravyla-povedinky',
         title: 'Правила поведінки здобувачів освіти',

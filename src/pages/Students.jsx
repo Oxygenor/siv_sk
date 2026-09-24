@@ -22,7 +22,7 @@ export default function Students() {
         <p className="muted">
           Актуальний розклад публікується адміністрацією гімназії у вигляді документа нижче.
         </p>
-        <DocumentList items={slots('rozklad-urokiv')} />
+        <DocumentList items={slots('rozklad-urokiv-1-4', 'rozklad-urokiv-5-9')} />
       </Section>
 
       <Section id="pravyla-povedinky" title="Правила поведінки здобувачів освіти" alt>
