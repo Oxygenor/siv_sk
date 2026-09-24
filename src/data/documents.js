@@ -54,7 +54,11 @@ export const documentCategories = [
         driveUrl: 'https://drive.google.com/file/d/1i5ej40TEWeCjI-rhJZZiBwTGy3gpLSTq/view',
       },
       { slug: 'licenzovanyi-obsyag', title: 'Ліцензований обсяг' },
-      { slug: 'mova-osvitnogo-procesu', title: 'Мова освітнього процесу' },
+      {
+        slug: 'mova-osvitnogo-procesu',
+        title: 'Мова освітнього процесу',
+        pageSlug: 'mova-osvitnogo-procesu',
+      },
       { slug: 'struktura-upravlinnya', title: 'Структура управління закладу' },
       { slug: 'monitoryng-yakosti', title: 'Моніторинг якості освіти' },
       { slug: 'atestaciya-uchyteliv', title: 'Атестація учителів' },
