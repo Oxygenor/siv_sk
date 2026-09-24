@@ -20,13 +20,23 @@ export default function CustomSection() {
   }
 
   const fileUrl = assetUrl('sections', item.filename)
+  const photos = item.photos ?? []
 
   return (
     <>
       <Breadcrumbs items={[{ to: '/rozdily', label: 'Розділи' }, { label: item.title }]} />
       <article className="section container news-detail">
         <h1>{item.title}</h1>
-        <p style={{ whiteSpace: 'pre-wrap' }}>{item.body}</p>
+        {item.body && <p style={{ whiteSpace: 'pre-wrap' }}>{item.body}</p>}
+        {photos.length > 0 && (
+          <div className="section-photo-grid">
+            {photos.map((photo) => (
+              <a key={photo} href={assetUrl('sections', photo)} target="_blank" rel="noreferrer">
+                <img src={assetUrl('sections', photo)} alt={item.title} />
+              </a>
+            ))}
+          </div>
+        )}
         {fileUrl && (
           <a className="btn btn-outline" href={fileUrl} target="_blank" rel="noreferrer">
             Завантажити прикріплений файл
