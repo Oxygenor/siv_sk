@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import Breadcrumbs from '../components/Breadcrumbs'
+import PhotoSlider from '../components/PhotoSlider'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { sections } from '../data/sections'
 import { assetUrl } from '../utils/assetUrl'
@@ -22,6 +23,7 @@ export default function CustomSection() {
 
   const fileUrl = assetUrl('sections', item.filename)
   const photos = item.photos ?? []
+  const photoGroups = item.photoGroups ?? []
   const hours = item.hours ?? []
   const todayIndex = (new Date().getDay() + 6) % 7
 
@@ -54,6 +56,9 @@ export default function CustomSection() {
             ))}
           </div>
         )}
+        {photoGroups.map((group) => (
+          <PhotoSlider key={group.title} title={group.title} photos={group.photos} />
+        ))}
         {fileUrl && (
           <a className="btn btn-outline" href={fileUrl} target="_blank" rel="noreferrer">
             Завантажити прикріплений файл

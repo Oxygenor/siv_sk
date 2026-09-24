@@ -60,7 +60,11 @@ export const documentCategories = [
         pageSlug: 'mova-osvitnogo-procesu',
       },
       { slug: 'struktura-upravlinnya', title: 'Структура управління закладу' },
-      { slug: 'monitoryng-yakosti', title: 'Моніторинг якості освіти' },
+      {
+        slug: 'monitoryng-yakosti',
+        title: 'Моніторинг якості освіти',
+        pageSlug: 'monitoryng-yakosti',
+      },
       { slug: 'atestaciya-uchyteliv', title: 'Атестація учителів' },
       {
         slug: 'akademichna-dobrochesnist',
