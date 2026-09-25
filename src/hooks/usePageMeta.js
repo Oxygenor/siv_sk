@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 const SITE_NAME = 'Сиваковецька гімназія'
+const HOME_TITLE = 'КЗ «Сиваковецька гімназія» — школа с. Сиваківці'
 const SITE_URL = 'https://syvakovetska.vn.ua'
 
 function setMeta(name, content) {
@@ -19,7 +20,7 @@ function setMeta(name, content) {
 // good enough for Googlebot (which executes JS) even if it briefly shows the default title.
 export function usePageMeta(title, description) {
   useEffect(() => {
-    document.title = title ? `${title} — ${SITE_NAME}` : SITE_NAME
+    document.title = title ? `${title} — ${SITE_NAME}` : HOME_TITLE
     setMeta('description', description)
 
     let canonical = document.querySelector('link[rel="canonical"]')
