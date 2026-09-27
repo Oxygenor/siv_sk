@@ -5,6 +5,14 @@
   margin: 16px 0;
 }
 
+.section-video {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 16px 0;
+  border-radius: var(--radius-md);
+  background: #000;
+}
 .section-photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

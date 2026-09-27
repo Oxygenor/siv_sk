@@ -4,7 +4,9 @@
 // `hours` — опційний розклад роботи (масив { day, time } або { day, closed: true }),
 // показується стилізованою таблицею з підсвіченим поточним днем,
 // `photoGroups` — опційний масив { title, photos: [...] } для багатосторінкових
-// скан-документів (кожна група — окремий слайдер зі стрілками/крапками).
+// скан-документів (кожна група — окремий слайдер зі стрілками/крапками),
+// `videos` — опційний масив назв відеофайлів (MP4, H.264) з public/sections/,
+// показуються вбудованим плеєром над фото.
 //
 // Приклад:
 // {
@@ -125,7 +127,14 @@ export const sections = [
     slug: 'organizaciya-harchuvannya',
     title: 'Організація харчування',
     body: '',
-    photos: ['harchuvannya-01.jpg', 'harchuvannya-02.jpg', 'harchuvannya-03.jpg'],
+    videos: ['harchuvannya.mp4'],
+    photos: [
+      'harchuvannya-01.jpg',
+      'harchuvannya-02.jpg',
+      'harchuvannya-03.jpg',
+      'harchuvannya-04.jpg',
+      'harchuvannya-05.jpg',
+    ],
   },
   {
     slug: 'monitoryng-yakosti',

@@ -739,3 +739,6 @@ Drive-посилання (folderview 1zFg0QSnW8SRU4r7NutnlgXjZ9j3dHr3Q) приб
 «Ліцензований обсяг» → нова сторінка `/rozdily/licenzovanyi-obsyag` (текст «180 учнів» + фото фактичної кількості
 учнів 2026-2027, 81 учень; копія в public/sections обрізана по таблиці, оригінал у public/documents не комітився).
 Одне фото в розділі тепер показується повністю (`.section-photo-grid.is-single`), а не обрізаним квадратиком.
+«Організація харчування»: додано відео `public/sections/harchuvannya.mp4` (52 с, H.264/AAC, 10 МБ) і фото
+harchuvannya-04/05.jpg (з «Харчування_1/2»). Розділи підтримують поле `videos` (вбудований плеєр).
+Оригінали в public/documents не комітились.

@@ -23,6 +23,7 @@ export default function CustomSection() {
 
   const fileUrl = assetUrl('sections', item.filename)
   const photos = item.photos ?? []
+  const videos = item.videos ?? []
   const photoGroups = item.photoGroups ?? []
   const hours = item.hours ?? []
   const todayIndex = (new Date().getDay() + 6) % 7
@@ -47,6 +48,16 @@ export default function CustomSection() {
             </tbody>
           </table>
         )}
+        {videos.map((video) => (
+          <video
+            key={video}
+            className="section-video"
+            src={assetUrl('sections', video)}
+            controls
+            playsInline
+            preload="metadata"
+          />
+        ))}
         {photos.length > 0 && (
           <div className={`section-photo-grid${photos.length === 1 ? ' is-single' : ''}`}>
             {photos.map((photo) => (
