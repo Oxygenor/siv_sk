@@ -40,7 +40,18 @@ export const documentCategories = [
         title: 'Звіт керівника закладу',
         filename: 'Звіт директора.pdf',
       },
-      { slug: 'finansovo-gospodarska', title: 'Фінансово-господарська діяльність' },
+      {
+        slug: 'finansovo-gospodarska',
+        title: 'Фінансово-господарська діяльність',
+        files: [
+          {
+            label: 'Стаття 59 Закону України «Про повну загальну середню освіту»',
+            filename: 'Стаття 59 Закону Про повну загальну середню освіту.pdf',
+          },
+          { label: 'Кошторис 1', filename: 'Кошторис 1.pdf' },
+          { label: 'Кошторис 2', filename: 'Кошторис 2.1.pdf' },
+        ],
+      },
     ],
   },
   {
