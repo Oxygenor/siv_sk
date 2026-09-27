@@ -23,7 +23,6 @@ export const documentCategories = [
         title: 'Статут та ліцензія закладу',
         files: [
           { label: 'Статут', filename: 'Статут.pdf' },
-          { label: 'Продовження статуту', filename: 'Продовження статуту.pdf' },
           {
             label: 'Наказ про переоформлення ліцензій',
             filename: 'Наказ про переоформлення ліцензій.pdf',
