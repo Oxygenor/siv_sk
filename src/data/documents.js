@@ -140,7 +140,7 @@ export const documentCategories = [
       },
       {
         slug: 'poryadok-zayav-buling',
-        title: 'Порядок подання заяв про випадки булінгу',
+        title: 'Порядок реагування на випадки булінгу',
         driveUrl: 'https://drive.google.com/file/d/1GGYVysXscLKF09nJGyLGQ-vUoP9G_Gc0/view',
       },
       { slug: 'covid-19', title: 'Covid-19 — рекомендації', pageSlug: 'covid-19' },
