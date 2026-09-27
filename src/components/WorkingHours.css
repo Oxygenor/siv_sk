@@ -1,0 +1,156 @@
+.wh {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Ліва картка — фірмовий синій, однаковий у світлій і темній темі */
+.wh-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-brand-dark) 0%, #1e4fa3 100%);
+  box-shadow: var(--shadow-md);
+}
+.wh-card::after {
+  content: '';
+  position: absolute;
+  right: -60px;
+  bottom: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+.wh-card-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.wh-card p { margin: 0; }
+.wh-card-days {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.wh-card-time {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.wh-card-off {
+  opacity: 0.8;
+}
+.wh-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 16px !important;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.14);
+}
+.wh-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.wh-status.is-open .wh-status-dot {
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  animation: wh-pulse 2s infinite;
+}
+.wh-status.is-closed .wh-status-dot {
+  background: #fca5a5;
+}
+@keyframes wh-pulse {
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wh-status.is-open .wh-status-dot { animation: none; }
+}
+
+/* Права частина — тиждень по днях */
+.wh-week {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.wh-day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+}
+.wh-day + .wh-day { border-top: 1px solid var(--color-border); }
+.wh-day.is-today,
+.wh-day.is-today + .wh-day { border-top-color: transparent; }
+.wh-day-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.wh-day-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wh-day.is-off .wh-day-name,
+.wh-day.is-off .wh-day-time {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+.wh-day.is-today {
+  background: var(--color-primary-light);
+}
+.wh-day.is-today .wh-day-name { font-weight: 700; }
+.wh-today-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+.wh-more {
+  padding: 12px 16px 6px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.92rem;
+}
+.wh-more a { font-weight: 600; }
+
+@media (max-width: 800px) {
+  .wh { grid-template-columns: 1fr; }
+  .wh-card { padding: 24px; }
+}

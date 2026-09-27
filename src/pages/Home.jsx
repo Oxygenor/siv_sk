@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import NewsCard from '../components/NewsCard'
 import QuickLinks from '../components/QuickLinks'
+import WorkingHours from '../components/WorkingHours'
 import { EmptyState } from '../components/Loader'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { school } from '../data/school'
@@ -59,6 +60,14 @@ export default function Home() {
 
       <section className="section section-alt">
         <div className="container">
+          <span className="eyebrow">Режим роботи</span>
+          <h2>Коли працює гімназія</h2>
+          <WorkingHours />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
           <div className="section-heading-row">
             <div>
               <span className="eyebrow">Новини</span>
@@ -80,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-alt">
         <div className="container">
           <div className="section-heading-row">
             <div>
@@ -101,7 +110,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section-alt">
+      <section className="section">
         <div className="container contact-teaser">
           <div>
             <span className="eyebrow">Контакти</span>
