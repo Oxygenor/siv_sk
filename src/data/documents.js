@@ -75,7 +75,11 @@ export const documentCategories = [
         title: 'Штатний розпис',
         driveUrl: 'https://drive.google.com/file/d/1i5ej40TEWeCjI-rhJZZiBwTGy3gpLSTq/view',
       },
-      { slug: 'licenzovanyi-obsyag', title: 'Ліцензований обсяг' },
+      {
+        slug: 'licenzovanyi-obsyag',
+        title: 'Ліцензований обсяг',
+        pageSlug: 'licenzovanyi-obsyag',
+      },
       {
         slug: 'mova-osvitnogo-procesu',
         title: 'Мова освітнього процесу',

@@ -72,6 +72,12 @@ export const sections = [
     ],
   },
   {
+    slug: 'licenzovanyi-obsyag',
+    title: 'Ліцензований обсяг',
+    body: 'Ліцензований обсяг закладу освіти — 180 учнів.',
+    photos: ['licenzovanyi-obsyag.jpg'],
+  },
+  {
     slug: 'mova-osvitnogo-procesu',
     title: 'Мова освітнього процесу',
     body: `Мовою освітнього процесу в закладі є державна мова — українська.

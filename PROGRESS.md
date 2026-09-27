@@ -736,3 +736,6 @@ Drive-посилання (folderview 1zFg0QSnW8SRU4r7NutnlgXjZ9j3dHr3Q) приб
 Старе Drive-посилання: drive.google.com/file/d/1umvGQ7UNFSETbz1D-WO17eNtacNGDyLE.
 «Стратегія розвитку закладу»: Drive-посилання прибрано на прохання користувача (буде новий файл пізніше),
 слот показує «Буде додано найближчим часом». Старе: drive.google.com/file/d/1dlVIuwai8mTy0alqYOIg6w5TwmZb6RTH.
+«Ліцензований обсяг» → нова сторінка `/rozdily/licenzovanyi-obsyag` (текст «180 учнів» + фото фактичної кількості
+учнів 2026-2027, 81 учень; копія в public/sections обрізана по таблиці, оригінал у public/documents не комітився).
+Одне фото в розділі тепер показується повністю (`.section-photo-grid.is-single`), а не обрізаним квадратиком.

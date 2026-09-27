@@ -48,7 +48,7 @@ export default function CustomSection() {
           </table>
         )}
         {photos.length > 0 && (
-          <div className="section-photo-grid">
+          <div className={`section-photo-grid${photos.length === 1 ? ' is-single' : ''}`}>
             {photos.map((photo) => (
               <a key={photo} href={assetUrl('sections', photo)} target="_blank" rel="noreferrer">
                 <img src={assetUrl('sections', photo)} alt={item.title} />
