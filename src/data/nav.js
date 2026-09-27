@@ -42,7 +42,7 @@ export const navItems = [
     to: '/formy-navchannya',
     label: 'Форми навчання',
     anchors: [
-      { id: 'indyvidualne', label: 'Індивідуальне навчання' },
+      { id: 'indyvidualne', label: 'Інклюзивне навчання' },
       { id: 'simeyne', label: 'Сімейне навчання' },
       { id: 'dystanciyna-osvita', label: 'Дистанційна освіта' },
     ],
@@ -75,7 +75,7 @@ export const searchIndex = [
   { title: 'Часті запитання', path: '/batkam#faq', keywords: 'faq питання відповіді' },
   { title: 'Документи', path: '/dokumenty', keywords: 'документи статут ліцензія звіт фінансова звітність' },
   { title: 'Бібліотека', path: '/biblioteka', keywords: 'бібліотека підручники книги' },
-  { title: 'Індивідуальне навчання', path: '/formy-navchannya#indyvidualne', keywords: 'індивідуальне навчання особливі потреби' },
+  { title: 'Інклюзивне навчання', path: '/formy-navchannya#indyvidualne', keywords: 'інклюзивне навчання інклюзія особливі освітні потреби індивідуальне' },
   { title: 'Сімейне навчання', path: '/formy-navchannya#simeyne', keywords: 'сімейне навчання домашнє' },
   { title: 'Дистанційна освіта', path: '/formy-navchannya#dystanciyna-osvita', keywords: 'дистанційна освіта онлайн' },
   { title: 'Фотогалерея', path: '/fotogalereya', keywords: 'фото галерея світлини альбоми' },

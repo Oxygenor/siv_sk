@@ -168,7 +168,7 @@ export const documentCategories = [
   },
   {
     id: 'individual',
-    title: 'Індивідуальне навчання',
+    title: 'Інклюзивне навчання',
     items: [
       {
         slug: 'dostupnist-osoblyvi-potreby',
