@@ -725,3 +725,5 @@ Drive-посилання (folderview 1zFg0QSnW8SRU4r7NutnlgXjZ9j3dHr3Q) приб
 Розклад дзвінків: `src/data/bells.js` (7 уроків 09:00–15:35, перерви 10 хв, великі 20 хв після 3 і 4 уроку),
 компонент `BellSchedule.jsx` на «Учням» → `#dzvinky` (у розділі «Розклад уроків»), живий статус
 урок/перерва за Києвом, у вихідні не рахується. Спільна утиліта часу `src/utils/kyivTime.js`.
+«Матеріально-технічне забезпечення» → локальний PDF (конвертовано з DOCX користувача через Word COM;
+обидва файли в public/documents). Старе Drive-посилання: drive.google.com/file/d/1QaLWuzZUVD6_qcLRoEAupy3AlKp4zTiJ.

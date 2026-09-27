@@ -32,7 +32,7 @@ export const documentCategories = [
       {
         slug: 'materialno-tehnichne',
         title: 'Матеріально-технічне забезпечення',
-        driveUrl: 'https://drive.google.com/file/d/1QaLWuzZUVD6_qcLRoEAupy3AlKp4zTiJ/view',
+        filename: 'Матеріально-технічне забезпечення закладу освіти.pdf',
       },
       { slug: 'finansova-zvitnist', title: 'Фінансова звітність' },
       {
