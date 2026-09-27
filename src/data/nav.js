@@ -17,6 +17,7 @@ export const navItems = [
     label: 'Учням',
     anchors: [
       { id: 'rozklad', label: 'Розклад уроків' },
+      { id: 'dzvinky', label: 'Розклад дзвінків' },
       { id: 'pravyla-povedinky', label: 'Правила поведінки' },
       { id: 'kryterii-ocinyuvannya', label: 'Критерії оцінювання' },
       { id: 'obovyazky', label: 'Обов’язки здобувачів освіти' },
@@ -62,6 +63,7 @@ export const searchIndex = [
   { title: 'Вакансії', path: '/pro-gimnaziyu#vakansii', keywords: 'вакансії робота працевлаштування' },
   { title: 'Новини та події', path: '/novyny', keywords: 'новини оголошення шкільне життя події' },
   { title: 'Розклад уроків', path: '/uchnyam#rozklad', keywords: 'розклад уроки дзвінки час' },
+  { title: 'Розклад дзвінків', path: '/uchnyam#dzvinky', keywords: 'дзвінки дзвінок перерва початок уроків час уроку' },
   { title: 'Правила поведінки здобувачів освіти', path: '/uchnyam#pravyla-povedinky', keywords: 'правила поведінки учні дисципліна' },
   { title: 'Критерії оцінювання', path: '/uchnyam#kryterii-ocinyuvannya', keywords: 'оцінювання оцінки бали критерії' },
   { title: 'Обов’язки здобувачів освіти', path: '/uchnyam#obovyazky', keywords: 'обов’язки учнів' },

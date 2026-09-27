@@ -2,6 +2,7 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import PageHero from '../components/PageHero'
 import Section from '../components/Section'
 import DocumentList from '../components/DocumentList'
+import BellSchedule from '../components/BellSchedule'
 import { allDocumentSlots } from '../data/documents'
 
 function slots(...ids) {
@@ -19,6 +20,11 @@ export default function Students() {
       <Breadcrumbs items={[{ label: 'Учням' }]} />
 
       <Section id="rozklad" title="Розклад уроків">
+        <h3 id="dzvinky" className="anchor-section">
+          Розклад дзвінків
+        </h3>
+        <BellSchedule />
+        <h3>Розклад уроків по класах</h3>
         <p className="muted">
           Актуальний розклад публікується адміністрацією гімназії у вигляді документа нижче.
         </p>

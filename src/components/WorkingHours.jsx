@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { sections } from '../data/sections'
+import { kyivNow, toMinutes } from '../utils/kyivTime'
 import './WorkingHours.css'
 
 // Блок «Режим роботи» на головній. Дані беруться з розділу `rezhym-roboty`
@@ -14,25 +15,7 @@ const DAY_ACCUSATIVE = ['понеділок', 'вівторок', 'середу'
 function parseRange(row) {
   if (!row || row.closed || !row.time) return null
   const [open, close] = row.time.split(/[–-]/).map((t) => t.trim())
-  const toMinutes = (t) => {
-    const [h, m] = t.split(':').map(Number)
-    return h * 60 + m
-  }
   return open && close ? { open, close, from: toMinutes(open), to: toMinutes(close) } : null
-}
-
-// Поточний день тижня (0 = понеділок) і хвилини від півночі в Києві.
-function kyivNow() {
-  const parts = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Europe/Kyiv',
-    weekday: 'short',
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-  }).formatToParts(new Date())
-  const get = (type) => parts.find((p) => p.type === type)?.value
-  const day = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(get('weekday'))
-  return { day, minutes: Number(get('hour')) * 60 + Number(get('minute')) }
 }
 
 function getStatus({ day, minutes }) {
