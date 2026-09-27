@@ -97,11 +97,7 @@ export const documentCategories = [
         title: 'Положення про академічну доброчесність',
         filename: 'Положення про академічну доброчесність.pdf',
       },
-      {
-        slug: 'strategiya-rozvytku',
-        title: 'Стратегія розвитку закладу',
-        driveUrl: 'https://drive.google.com/file/d/1dlVIuwai8mTy0alqYOIg6w5TwmZb6RTH/view',
-      },
+      { slug: 'strategiya-rozvytku', title: 'Стратегія розвитку закладу' },
     ],
   },
   {
