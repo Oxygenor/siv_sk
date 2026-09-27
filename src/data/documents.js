@@ -103,8 +103,8 @@ export const documentCategories = [
       },
       {
         slug: 'kryterii-ocinyuvannya',
-        title: 'Критерії оцінювання',
-        filename: 'критерії оцінювання.pdf',
+        title: 'Система та загальні критерії оцінювання (наказ МОН № 722 від 04.05.2026)',
+        filename: 'Критерії оцінювання (наказ МОН 722).pdf',
       },
       {
         slug: 'obovyazky-zdobuvachiv',
