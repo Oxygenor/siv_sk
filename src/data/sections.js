@@ -19,7 +19,7 @@
 export const sections = [
   {
     slug: 'dostupnist-osoblyvi-potreby',
-    title: 'Умови доступності закладу для дітей з особливими потребами',
+    title: 'Умови доступності закладу для дітей з особливими освітніми потребами',
     body: '',
     photos: ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
   },

@@ -172,7 +172,7 @@ export const documentCategories = [
     items: [
       {
         slug: 'dostupnist-osoblyvi-potreby',
-        title: 'Умови доступності закладу для дітей з особливими потребами',
+        title: 'Умови доступності закладу для дітей з особливими освітніми потребами',
         pageSlug: 'dostupnist-osoblyvi-potreby',
       },
     ],
