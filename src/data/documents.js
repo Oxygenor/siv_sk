@@ -21,7 +21,14 @@ export const documentCategories = [
       {
         slug: 'statut-licenziya',
         title: 'Статут та ліцензія закладу',
-        driveUrl: 'https://docs.google.com/folderview?id=1zFg0QSnW8SRU4r7NutnlgXjZ9j3dHr3Q',
+        files: [
+          { label: 'Статут', filename: 'Статут.pdf' },
+          { label: 'Продовження статуту', filename: 'Продовження статуту.pdf' },
+          {
+            label: 'Наказ про переоформлення ліцензій',
+            filename: 'Наказ про переоформлення ліцензій.pdf',
+          },
+        ],
       },
       {
         slug: 'materialno-tehnichne',
