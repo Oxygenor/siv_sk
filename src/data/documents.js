@@ -141,7 +141,7 @@ export const documentCategories = [
       {
         slug: 'poryadok-zayav-buling',
         title: 'Порядок реагування на випадки булінгу',
-        driveUrl: 'https://drive.google.com/file/d/1GGYVysXscLKF09nJGyLGQ-vUoP9G_Gc0/view',
+        filename: 'Порядок реагування на випадки булінгу (наказ МОН 961).pdf',
       },
       { slug: 'covid-19', title: 'Covid-19 — рекомендації', pageSlug: 'covid-19' },
     ],
