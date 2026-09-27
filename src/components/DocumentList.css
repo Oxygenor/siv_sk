@@ -19,3 +19,25 @@
 .doc-list-icon { font-size: 1.1rem; }
 .doc-list-title { flex: 1; font-weight: 600; min-width: 200px; }
 .doc-list-pending { white-space: nowrap; }
+.doc-list-group { flex-direction: column; align-items: stretch; }
+.doc-list-group-head { display: flex; align-items: center; gap: 12px; }
+.doc-list-files {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.doc-list-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+.doc-list-file-label { flex: 1; min-width: 180px; }
+@media (max-width: 600px) {
+  .doc-list-files { padding-left: 0; }
+}

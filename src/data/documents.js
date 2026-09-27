@@ -7,6 +7,7 @@
 // це кілька фото чи текст, а не один файл для завантаження.
 // Пріоритет: filename > driveUrl > pageSlug. Якщо нема жодного —
 // показується позначка "документ буде додано найближчим часом".
+// Спосіб 4: кілька файлів в одному слоті — поле `files: [{ label, filename | driveUrl }]`.
 export const documentCategories = [
   {
     id: 'public-info',
@@ -141,12 +142,16 @@ export const documentCategories = [
       {
         slug: 'poryadok-zayav-buling',
         title: 'Порядок реагування на випадки булінгу',
-        driveUrl: 'https://drive.google.com/file/d/1GGYVysXscLKF09nJGyLGQ-vUoP9G_Gc0/view',
-      },
-      {
-        slug: 'nakaz-mon-961-buling',
-        title: 'Наказ МОН № 961 від 18.06.2026 — нова редакція Порядку реагування на випадки булінгу',
-        filename: 'Порядок реагування на випадки булінгу (наказ МОН 961).pdf',
+        files: [
+          {
+            label: 'Порядок реагування на випадки булінгу (документ закладу)',
+            driveUrl: 'https://drive.google.com/file/d/1GGYVysXscLKF09nJGyLGQ-vUoP9G_Gc0/view',
+          },
+          {
+            label: 'Наказ МОН № 961 від 18.06.2026 — нова редакція Порядку реагування на випадки булінгу',
+            filename: 'Порядок реагування на випадки булінгу (наказ МОН 961).pdf',
+          },
+        ],
       },
       { slug: 'covid-19', title: 'Covid-19 — рекомендації', pageSlug: 'covid-19' },
     ],

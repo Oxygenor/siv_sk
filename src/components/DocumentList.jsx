@@ -7,11 +7,47 @@ import './DocumentList.css'
 // зі старого сайту) або `pageSlug` (веде на внутрішню сторінку /rozdily/:slug,
 // напр. коли "документ" — це кілька фото). Пріоритет:
 // filename > driveUrl > pageSlug. Якщо нема жодного — позначка, що документ
-// ще не додано.
+// ще не додано. Якщо в слоті кілька файлів — масив `files`, кожен елемент
+// { label, filename } або { label, driveUrl }; тоді вони показуються списком
+// під назвою слота.
+function FileButton({ file }) {
+  const localUrl = assetUrl('documents', file.filename)
+  const url = localUrl || file.driveUrl
+  if (!url) return <span className="badge doc-list-pending">Буде додано найближчим часом</span>
+  return (
+    <a className="btn btn-outline btn-sm" href={url} target="_blank" rel="noreferrer">
+      {localUrl ? 'Завантажити' : 'Переглянути в Google Drive'}
+    </a>
+  )
+}
+
 export default function DocumentList({ items }) {
   return (
     <ul className="doc-list">
       {items.map((item) => {
+        if (item.files?.length) {
+          return (
+            <li key={item.slug} className="doc-list-item doc-list-group">
+              <div className="doc-list-group-head">
+                <span className="doc-list-icon" aria-hidden="true">
+                  📁
+                </span>
+                <span className="doc-list-title">{item.title}</span>
+              </div>
+              <ul className="doc-list-files">
+                {item.files.map((file) => (
+                  <li key={file.filename || file.driveUrl || file.label} className="doc-list-file">
+                    <span className="doc-list-icon" aria-hidden="true">
+                      📄
+                    </span>
+                    <span className="doc-list-file-label">{file.label}</span>
+                    <FileButton file={file} />
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )
+        }
         const localUrl = assetUrl('documents', item.filename)
         const externalUrl = localUrl || item.driveUrl || null
         const isDrive = !localUrl && Boolean(item.driveUrl)
