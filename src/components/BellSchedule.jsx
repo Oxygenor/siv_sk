@@ -70,8 +70,12 @@ export default function BellSchedule() {
           }
           return (
             <li key={`l${row.lesson}`} className={`bells-lesson${current ? ' is-current' : ''}`}>
-              <span className="bells-num">{row.lesson}</span>
-              <span className="bells-name">{row.lesson} урок</span>
+              <span className="bells-num" aria-hidden="true">
+                {row.lesson}
+              </span>
+              <span className="bells-name">
+                <span className="visually-hidden">{row.lesson} </span>урок
+              </span>
               <span className="bells-time">
                 {row.start} – {row.end}
               </span>
