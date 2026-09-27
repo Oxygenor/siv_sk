@@ -43,7 +43,7 @@ export default function Parents() {
 
       <Section id="bezpeka" title="Безпека в школі" alt>
         <h3>Стоп булінг</h3>
-        <DocumentList items={slots('plan-zahodiv-buling', 'poryadok-zayav-buling')} />
+        <DocumentList items={slots('plan-zahodiv-buling', 'poryadok-zayav-buling', 'nakaz-mon-961-buling')} />
         <h3 style={{ marginTop: '28px' }}>Covid-19</h3>
         <DocumentList items={slots('covid-19')} />
       </Section>

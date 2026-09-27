@@ -57,7 +57,7 @@ export default function Students() {
           Гімназія дотримується політики нульової толерантності до булінгу (цькування). Порядок
           реагування на випадки булінгу та план профілактичних заходів наведені нижче.
         </p>
-        <DocumentList items={slots('plan-zahodiv-buling', 'poryadok-zayav-buling')} />
+        <DocumentList items={slots('plan-zahodiv-buling', 'poryadok-zayav-buling', 'nakaz-mon-961-buling')} />
       </Section>
 
       <Section id="psyhologichna-pidtrymka" title="Психологічна підтримка" alt>
