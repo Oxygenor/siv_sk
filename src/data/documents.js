@@ -36,7 +36,11 @@ export const documentCategories = [
         driveUrl: 'https://drive.google.com/file/d/1QaLWuzZUVD6_qcLRoEAupy3AlKp4zTiJ/view',
       },
       { slug: 'finansova-zvitnist', title: 'Фінансова звітність' },
-      { slug: 'zvit-kerivnyka', title: 'Звіт керівника закладу' },
+      {
+        slug: 'zvit-kerivnyka',
+        title: 'Звіт керівника закладу',
+        filename: 'Звіт директора.pdf',
+      },
       { slug: 'finansovo-gospodarska', title: 'Фінансово-господарська діяльність' },
     ],
   },
