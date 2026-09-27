@@ -95,7 +95,7 @@ export const documentCategories = [
       {
         slug: 'akademichna-dobrochesnist',
         title: 'Положення про академічну доброчесність',
-        driveUrl: 'https://drive.google.com/file/d/1umvGQ7UNFSETbz1D-WO17eNtacNGDyLE/view',
+        filename: 'Положення про академічну доброчесність.pdf',
       },
       {
         slug: 'strategiya-rozvytku',
