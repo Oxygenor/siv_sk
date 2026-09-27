@@ -16,7 +16,7 @@ export const documentCategories = [
       {
         slug: 'terytoriya-obslugovuvannya',
         title: 'Територія обслуговування закладу',
-        filename: 'Територія обслуговування закладу.jpg',
+        filename: 'Територія обслуговування закладу.pdf',
       },
       {
         slug: 'statut-licenziya',
