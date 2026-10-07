@@ -62,7 +62,7 @@ export const documentCategories = [
       {
         slug: 'osvitnya-programa',
         title: 'Освітня програма',
-        driveUrl: 'https://docs.google.com/folderview?id=1-weCiCT0lKlNsYiBefNpre2kdaSpMYa4',
+        filename: 'Освітня програма на 2026-2027.pdf',
       },
       {
         slug: 'richnyi-plan',
@@ -73,7 +73,7 @@ export const documentCategories = [
       {
         slug: 'shtatnyi-rozpys',
         title: 'Штатний розпис',
-        driveUrl: 'https://drive.google.com/file/d/1i5ej40TEWeCjI-rhJZZiBwTGy3gpLSTq/view',
+        filename: 'Штатний_розпис.pdf',
       },
       {
         slug: 'licenzovanyi-obsyag',

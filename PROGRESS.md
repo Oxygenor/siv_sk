@@ -742,3 +742,11 @@ Drive-посилання (folderview 1zFg0QSnW8SRU4r7NutnlgXjZ9j3dHr3Q) приб
 «Організація харчування»: додано відео `public/sections/harchuvannya.mp4` (52 с, H.264/AAC, 10 МБ) і фото
 harchuvannya-04/05.jpg (з «Харчування_1/2»). Розділи підтримують поле `videos` (вбудований плеєр).
 Оригінали в public/documents не комітились.
+
+## 2026-10-07 — «Освітня програма» і «Штатний розпис» → локальні файли
+«Освітня програма» → `Освітня програма на 2026-2027.pdf` (40 с., схвалено педрадою 28.08.2026, протокол № 1;
+конвертовано з DOCX користувача через Word COM, обидва файли в public/documents). Старе Drive-посилання:
+docs.google.com/folderview?id=1-weCiCT0lKlNsYiBefNpre2kdaSpMYa4.
+«Штатний розпис» → `Штатний_розпис.pdf` (скан, 1 с., станом на 01.09.2026, 10,0 штатних одиниць). Користувач
+говорив про JPEG, але надав PDF — прив'язано PDF як є. Старе Drive-посилання:
+drive.google.com/file/d/1i5ej40TEWeCjI-rhJZZiBwTGy3gpLSTq.
