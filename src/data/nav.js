@@ -67,7 +67,7 @@ export const searchIndex = [
   { title: 'Правила поведінки здобувачів освіти', path: '/uchnyam#pravyla-povedinky', keywords: 'правила поведінки учні дисципліна' },
   { title: 'Критерії оцінювання', path: '/uchnyam#kryterii-ocinyuvannya', keywords: 'оцінювання оцінки бали критерії' },
   { title: 'Обов’язки здобувачів освіти', path: '/uchnyam#obovyazky', keywords: 'обов’язки учнів' },
-  { title: 'Протидія булінгу', path: '/uchnyam#buling', keywords: 'булінг цькування протидія безпека' },
+  { title: 'Протидія булінгу', path: '/uchnyam#buling', keywords: 'булінг цькування протидія безпека кібербулінг кібербезпека' },
   { title: 'Психологічна підтримка', path: '/uchnyam#psyhologichna-pidtrymka', keywords: 'психолог підтримка допомога' },
   { title: 'Дистанційне навчання', path: '/uchnyam#dystanciyne', keywords: 'дистанційне навчання онлайн google meet' },
   { title: 'Правила прийому до школи', path: '/batkam#zarahuvannya', keywords: 'зарахування прийом вступ документи' },

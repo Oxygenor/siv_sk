@@ -179,6 +179,11 @@ export const documentCategories = [
           },
         ],
       },
+      {
+        slug: 'kiberbezpeka',
+        title: 'Що таке кібербезпека',
+        filename: 'кібербезпека.pdf',
+      },
       { slug: 'covid-19', title: 'Covid-19 — рекомендації', pageSlug: 'covid-19' },
     ],
   },
