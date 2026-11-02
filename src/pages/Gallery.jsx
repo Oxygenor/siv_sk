@@ -60,7 +60,7 @@ export default function Gallery() {
             </div>
           )}
 
-          {events.length > 1 && (
+          {events.length > 0 && (
             <div className="gallery-filters gallery-filters-events">
               <button
                 className={`btn btn-sm ${eventFilter === 'all' ? 'btn-primary' : 'btn-outline'}`}
