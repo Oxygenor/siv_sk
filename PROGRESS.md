@@ -765,3 +765,5 @@ drive.google.com/file/d/1i5ej40TEWeCjI-rhJZZiBwTGy3gpLSTq.
 `Gallery.jsx`: рядок фільтра подій тепер показується вже при одній події (`events.length > 0`, було `> 1`),
 інакше підальбом у новому альбомі не було б видно.
 Playwright оновився: його headless-chromium не встановлено — запускати `chromium.launch({ channel: 'chrome' })`.
+Додано подію «День знань» (4 фото `y2026-e02-01..04.jpg`, з `public/documents/2026-2027/День знань/`) — у списку
+стоїть першою (хронологічно раніше 18 жовтня). Вихідна папка `public/documents/2026-2027/` не комітиться.
